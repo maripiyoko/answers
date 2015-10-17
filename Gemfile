@@ -60,4 +60,8 @@ group :test do
   gem 'email_spec'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 
