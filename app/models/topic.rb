@@ -6,7 +6,7 @@ class Topic < ActiveRecord::Base
   validates_presence_of :title, :topic_type
 
   TOPIC_TYPES = %w(
-    会議開催
+    会議
     議題
   ).freeze
   enumerize :topic_type, in: TOPIC_TYPES
