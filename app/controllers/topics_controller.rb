@@ -6,6 +6,10 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_type: params[:topic_type])
   end
 
+  def show
+    @answer = @topic.answers.find_by_user_id(current_user)
+  end
+
   def create
     @topic = current_user.topics.create(topic_params)
     respond_to do |format|

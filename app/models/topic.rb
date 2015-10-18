@@ -2,6 +2,7 @@ class Topic < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :user
+  has_many :answers
 
   validates_presence_of :title, :topic_type
 
@@ -11,5 +12,11 @@ class Topic < ActiveRecord::Base
   ).freeze
   enumerize :topic_type, in: TOPIC_TYPES
   validates :topic_type, presence: true, inclusion: { in: TOPIC_TYPES }
+
+
+  scope :unanswered, ->(user) {
+    now = Time.current
+    where('start_date > ?', now)
+  }
 
 end

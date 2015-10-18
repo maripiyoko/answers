@@ -1,12 +1,11 @@
 %tr
+  %td= render 'topics/label', topic: topic
   %td= topic.start_date
   %td
-    - if topic.user == current_user
-      = link_to topic.title, edit_topic_path(topic)
-    - else
-      = link_to topic.title, topic
+    = link_to topic.title, topic
   %td= topic.deadline_date
   %td ○○/○○
   %td
     - if topic.user == current_user
+      = link_to '編集', edit_topic_path(topic), class: "btn btn-default btn-sm"
       = link_to '削除', topic, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm"

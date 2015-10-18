@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018121605) do
+ActiveRecord::Schema.define(version: 20151018134859) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "answer_type", limit: 4,     default: 0
+    t.integer  "topic_id",    limit: 4
+    t.integer  "user_id",     limit: 4
+    t.text     "message",     limit: 65535
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "answers", ["topic_id"], name: "index_answers_on_topic_id", using: :btree
+  add_index "answers", ["user_id", "id"], name: "index_answers_on_user_id_and_id", unique: true, using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.string   "title",         limit: 255
@@ -46,4 +59,6 @@ ActiveRecord::Schema.define(version: 20151018121605) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "answers", "topics"
+  add_foreign_key "answers", "users"
 end
