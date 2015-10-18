@@ -1,19 +1,30 @@
-.panel.panel-default
-  .panel-heading
-    = render 'label', topic: @topic
-    %h3.panel-title= @topic.title
+.row
+  .col-sm-10
+    .panel.panel-default
+      .panel-heading
+        = render 'label', topic: @topic
+        %h3.panel-title= @topic.title
 
-  .panel-body
-    %table.table
-      %tr
-        %th 開催日
-        %td= @topic.start_date
-      %tr
-        %th 開催場所
-        %td= @topic.place
-      %tr
-        %th 回答締め切り日
-        %td= @topic.deadline_date
-      %tr
-        %th 概要
-        %td= @topic.content
+      .panel-body
+        %table.table
+          %tr
+            %th 開催日
+            %td= @topic.start_date
+          %tr
+            %th 開催場所
+            %td= @topic.place
+          %tr
+            %th 回答締め切り日
+            %td= @topic.deadline_date
+          %tr
+            %th 概要
+            %td= @topic.content
+
+  .col-sm-2
+    - if @answer.present?
+      %h3= render 'answer'
+      = link_to '回答を取り消す', topic_answer_path(@topic), class: 'btn btn-link btn-block', method: :delete
+    - else
+      = link_to '出席する', topic_answer_path(@topic, { answer_type: 1 }), class: 'btn btn-success btn-block', method: :post
+      = link_to '欠席する', topic_answer_path(@topic, { answer_type: -1 }), class: 'btn btn-warning btn-block', method: :post
+
