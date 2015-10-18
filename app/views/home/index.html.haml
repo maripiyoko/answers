@@ -1,2 +1,26 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+
+%ul.nav.nav-tabs{ role: 'tablist' }
+  %li{ role: 'presentation', class: 'active' }
+    %a{ href: '#meetings',
+        area: { controls: 'meetings' },
+        role: 'tab',
+        data: { toggle: 'tab' } } 出欠未回答の会議
+  %li{ role: 'presentation' }
+    %a{ href: '#topics',
+        area: { controls: 'topics' },
+        role: 'tab',
+        data: { toggle: 'tab' } } 未回答の議題
+  %li{ role: 'presentation' }
+    %a{ href: '#my',
+        area: { controls: 'my' },
+        role: 'tab',
+        data: { toggle: 'tab' } } 自分の作った会議
+
+
+.tab-content
+  #meetings.tab-pane{ role: 'tabpanel' }
+    = render 'topics/index', topics: current_user.topics
+  #topics.tab-pane{ role: 'tabpanel' }
+    = render 'topics/index', topics: current_user.topics
+  #my.tab-pane{ role: 'tabpanel' }
+    = render 'topics/index', topics: current_user.topics

@@ -1,0 +1,11 @@
+.row
+  .col-sm-12
+    .col-sm-3
+      = link_to '会議を招集する', new_topic_path(topic_type: '会議'), class: 'btn btn-default btn-block'
+    .col-sm-3
+      = link_to '議題を投稿する', new_topic_path(topic_type: '議題'), class: 'btn btn-default btn-block'
+    .col-sm-2
+    .col-sm-2
+      = link_to '過去の会議を見る', '#', class: 'btn btn-link btn-block'
+    .col-sm-2
+      = link_to '過去の議題を見る', '#', class: 'btn btn-link btn-block'

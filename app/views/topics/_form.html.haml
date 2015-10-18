@@ -1,0 +1,13 @@
+= simple_form_for @topic do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :topic_type, label: 'タイプ'
+    = f.input :start_date, label: '開催日'
+    = f.input :title, label: 'タイトル'
+    = f.input :content, label: '概要'
+    = f.input :place, label: '開催場所'
+    = f.input :deadline_date, label: '回答締め切り日'
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"
