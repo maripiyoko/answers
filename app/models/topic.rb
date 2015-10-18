@@ -2,6 +2,7 @@ class Topic < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :user
+  has_many :answers
 
   validates_presence_of :title, :topic_type
 
