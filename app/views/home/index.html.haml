@@ -1,15 +1,12 @@
+= render 'layouts/menu'
+%h1
 
 %ul.nav.nav-tabs{ role: 'tablist' }
   %li{ role: 'presentation', class: 'active' }
-    %a{ href: '#meetings',
-        area: { controls: 'meetings' },
+    %a{ href: '#unanswered',
+        area: { controls: 'unanswered' },
         role: 'tab',
-        data: { toggle: 'tab' } } 出欠未回答の会議
-  %li{ role: 'presentation' }
-    %a{ href: '#topics',
-        area: { controls: 'topics' },
-        role: 'tab',
-        data: { toggle: 'tab' } } 未回答の議題
+        data: { toggle: 'tab' } } 未回答のトピックス
   %li{ role: 'presentation' }
     %a{ href: '#my',
         area: { controls: 'my' },
@@ -18,9 +15,7 @@
 
 
 .tab-content
-  #meetings.tab-pane{ role: 'tabpanel' }
-    = render 'topics/index', topics: current_user.topics
-  #topics.tab-pane{ role: 'tabpanel' }
-    = render 'topics/index', topics: current_user.topics
+  #unanswered.tab-pane{ role: 'tabpanel' }
+    = render 'topics/index', topics: Topic.unanswered(current_user)
   #my.tab-pane{ role: 'tabpanel' }
     = render 'topics/index', topics: current_user.topics

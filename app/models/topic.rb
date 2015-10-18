@@ -13,4 +13,10 @@ class Topic < ActiveRecord::Base
   enumerize :topic_type, in: TOPIC_TYPES
   validates :topic_type, presence: true, inclusion: { in: TOPIC_TYPES }
 
+
+  scope :unanswered, ->(user) {
+    now = Time.current
+    where('start_date > ?', now)
+  }
+
 end
