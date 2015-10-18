@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [ :destroy ]
 
   def create
-    @answer = @topic.answers.build(answer_type: params[:answer_type])
+    @answer = @topic.answers.build(answer_params)
     @answer.user = current_user
     respond_to do |format|
       if @answer.save
@@ -28,5 +28,9 @@ class AnswersController < ApplicationController
 
     def set_answer
       @answer = @topic.answers.find_by_user_id(current_user)
+    end
+  
+    def answer_params
+      params.require(:answer).permit(:answer_type, :message, :topic_id)
     end
 end
