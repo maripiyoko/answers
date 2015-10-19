@@ -1,0 +1,14 @@
+#topic_comments_modal.modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{ class: "close", data: { dismiss: "modal" }, aria: { hidden: "true" } }☓
+        %h4.modal-title コメント
+
+      .modal-body
+        = simple_form_for [ @topic, @topic.comments.new ], remote: true do |f|
+          = f.input :comment
+          = f.button :submit, 'コメント投稿', class: "btn btn-primary"
+
+      .modal-footer
+        %button{ class: "btn btn-default", data: { dismiss: "modal" } } Close
