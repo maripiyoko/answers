@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "answers/create.html.haml", type: :view do
+RSpec.describe Comment, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

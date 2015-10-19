@@ -1,0 +1,15 @@
+%h4 寄せられたコメント
+
+%table.table
+  %thead
+    %tr
+      %th
+      %th{style: "width:10em;"}
+      %th{style: "width:10em;"}
+      %th{style: "width:4em;"}
+  %tbody#topic_comments
+    = render @topic.comments
+
+%button.btn.btn-success{ data: { toggle: "modal", target: "#topic_comments_modal" } }コメントする
+
+= render 'comments/modal'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018134859) do
+ActiveRecord::Schema.define(version: 20151019124920) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "answer_type", limit: 4,     default: 0
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20151018134859) do
   add_index "answers", ["topic_id"], name: "index_answers_on_topic_id", using: :btree
   add_index "answers", ["user_id", "id"], name: "index_answers_on_user_id_and_id", unique: true, using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "topic_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "comments", ["topic_id"], name: "index_comments_on_topic_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.string   "title",         limit: 255
@@ -61,4 +72,6 @@ ActiveRecord::Schema.define(version: 20151018134859) do
 
   add_foreign_key "answers", "topics"
   add_foreign_key "answers", "users"
+  add_foreign_key "comments", "topics"
+  add_foreign_key "comments", "users"
 end

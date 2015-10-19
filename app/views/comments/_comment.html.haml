@@ -1,0 +1,8 @@
+%tr
+  %td= comment.comment
+  %td= comment.user.name
+  %td= comment.updated_at
+  %td
+    - if comment.user == current_user
+      = link_to [ @topic, comment ], method: :delete, data: { confirm: "削除しますか？" }, class: "text-danger", remote: true do
+        %i.glyphicon.glyphicon-remove-sign
