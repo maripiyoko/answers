@@ -19,10 +19,6 @@ class Topic < ActiveRecord::Base
     where('start_date > ? AND user_id = ?', now, user)
   }
 
-  scope :answers_by_type, ->(answer_type) {
-    where()
-  }
-
   def num_answer(answer_type)
     self.answers.where(answer_type: answer_type).count
   end
