@@ -3,9 +3,13 @@
   %td= topic.start_date
   %td
     = link_to topic.title, topic
+    - if topic.user == current_user
+      = link_to edit_topic_path(topic), class: "text-warning" do
+        %i.glyphicon.glyphicon-pencil
   %td= topic.deadline_date
-  %td= "#{topic.num_unknown}/#{User.all.count}"
+  %td= "#{topic.num_answer(1)}/#{User.all.count} (#{topic.num_unknown})"
+  %td= topic.comments.count
   %td
     - if topic.user == current_user
-      = link_to '編集', edit_topic_path(topic), class: "btn btn-default btn-sm"
-      = link_to '削除', topic, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm"
+      = link_to topic, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "text-danger" do
+        %i.glyphicon.glyphicon-remove-sign
