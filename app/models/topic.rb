@@ -16,7 +16,19 @@ class Topic < ActiveRecord::Base
 
   scope :unanswered, ->(user) {
     now = Time.current
-    where('start_date > ?', now)
+    where('start_date > ? AND user_id = ?', now, user)
   }
+
+  scope :answers_by_type, ->(answer_type) {
+    where()
+  }
+
+  def num_answer(answer_type)
+    self.answers.where(answer_type: answer_type).count
+  end
+
+  def num_unknown
+    User.count - self.answers.where('answer_type = 1 OR answer_type = -1').count
+  end
 
 end

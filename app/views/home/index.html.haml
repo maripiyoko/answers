@@ -6,16 +6,16 @@
     %a{ href: '#unanswered',
         area: { controls: 'unanswered' },
         role: 'tab',
-        data: { toggle: 'tab' } } 未回答のトピックス
+        data: { toggle: 'tab' } } 未回答
   %li{ role: 'presentation' }
     %a{ href: '#my',
         area: { controls: 'my' },
         role: 'tab',
-        data: { toggle: 'tab' } } 自分の作った会議
+        data: { toggle: 'tab' } } 自分の作ったトピックス
 
 
 .tab-content
   #unanswered.tab-pane{ role: 'tabpanel' }
     = render 'topics/index', topics: Topic.unanswered(current_user)
   #my.tab-pane{ role: 'tabpanel' }
-    = render 'topics/index', topics: current_user.topics
+    = render 'topics/index', topics: current_user.topics.order('updated_at DESC')
