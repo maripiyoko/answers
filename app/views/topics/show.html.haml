@@ -22,9 +22,25 @@
 
   .col-sm-2
     - if @answer.present?
-      %h3= render 'answer'
+      %h3= @answer.answer_type
       = link_to '回答を取り消す', topic_answer_path(@topic), class: 'btn btn-link btn-block', method: :delete
     - else
-      = link_to '出席する', topic_answer_path(@topic, { answer_type: 1 }), class: 'btn btn-success btn-block', method: :post
-      = link_to '欠席する', topic_answer_path(@topic, { answer_type: -1 }), class: 'btn btn-warning btn-block', method: :post
+      = render 'answers/form'
+
+.row
+  .col-sm-12
+    %h3 現在の回答状況
+    %table.table
+      %thead
+        %tr
+          %th 出席
+          %th 欠席
+          %th 未回答
+      %tbody
+        %tr
+          %td= @topic.num_answer(1)
+          %td= @topic.num_answer(-1)
+          %td= @topic.num_unknown
+        %tr
+          %td= @topic.answers.
 

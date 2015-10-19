@@ -1,0 +1,9 @@
+= simple_form_for [@topic, Answer.new], url: topic_answer_path(@topic, @answer) do |f|
+  .form-inputs
+    = f.input :answer_type, as: :radio_buttons, label: '回答'
+    = f.input :message, label: 'メッセージ'
+  .form-actions
+    = f.button :submit, "回答する", class: "btn btn-primary btn-block"
+
+
+
