@@ -17,7 +17,7 @@ class Topic < ActiveRecord::Base
 
   scope :unanswered, ->(user) {
     now = Time.current
-    where('start_date > ? AND user_id = ?', now, user)
+    where('start_date > ?', now)
   }
 
   def num_answer(answer_type)
