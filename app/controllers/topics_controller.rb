@@ -45,6 +45,6 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:topic_type, :title, :start_date, :content, :place, :deadline_date)
+      params.require(:topic).permit(:topic_type, :title, :start_date, :content, :place, :deadline_date, :state, :end_date)
     end
 end
