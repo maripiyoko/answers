@@ -14,6 +14,14 @@ class Topic < ActiveRecord::Base
   enumerize :topic_type, in: TOPIC_TYPES
   validates :topic_type, presence: true, inclusion: { in: TOPIC_TYPES }
 
+  TOPIC_STATES = %w(
+    WIP
+    OPEN
+    CLOSED
+  ).freeze
+  enumerize :state, in: TOPIC_STATES, default: 'WIP'
+  validates :state, presence: true, inclusion: { in: TOPIC_STATES }
+
 
   scope :unanswered, ->(user) {
     now = Time.current

@@ -1,0 +1,9 @@
+- case topic.state
+- when 'OPEN'
+  - state_label = "info"
+- when 'WIP'
+  - state_label = "warning"
+- when 'CLOSED'
+  - state_label = "default"
+
+%span{ class: "label label-#{state_label}" }= topic.state

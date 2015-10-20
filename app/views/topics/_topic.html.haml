@@ -2,6 +2,7 @@
   %td= render 'topics/label', topic: topic
   %td= topic.start_date
   %td
+    = render 'topics/state_label', topic: topic
     = link_to topic.title, topic
     - if topic.user == current_user
       = link_to edit_topic_path(topic), class: "text-warning" do

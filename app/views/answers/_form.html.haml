@@ -1,9 +1,13 @@
-= simple_form_for [@topic, @topic.answers.new ], url: topic_answer_path(@topic, @answer) do |f|
-  .form-inputs
-    = f.input :answer_type, as: :radio_buttons, label: '回答'
-    = f.input :message, label: 'メッセージ'
-  .form-actions
-    = f.button :submit, "回答する", class: "btn btn-primary btn-block"
+.topic_state
+  = render 'topics/state_label', topic: @topic
+
+- if @topic.state == 'OPEN'
+  = simple_form_for [@topic, @topic.answers.new ], url: topic_answer_path(@topic, @answer) do |f|
+    .form-inputs
+      = f.input :answer_type, as: :radio_buttons, label: '回答'
+      = f.input :message, label: 'メッセージ'
+    .form-actions
+      = f.button :submit, "回答する", class: "btn btn-primary btn-block"
 
 
 
